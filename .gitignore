@@ -1,0 +1,12 @@
+# Vercel
+.vercel
+
+# Large binary — not part of the site
+cloudflared.exe
+
+# Logs
+*.log
+
+# Local tooling
+.claude/
+node_modules/
