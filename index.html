@@ -7,7 +7,7 @@
 <meta name="description" content="solutionswithEQ helps brands grow with social media marketing and beautifully designed, user-friendly websites that deliver excellent finished products. Book a free strategy call.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;450;500;600&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;450;500;600&family=Syne:wght@700;800&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="180x180" href="assets/favicon-180.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
@@ -93,13 +93,14 @@ ul{list-style:none}
 header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid var(--line);transition:box-shadow .3s}
 header.scrolled{box-shadow:var(--sh-sm)}
 nav{display:flex;align-items:center;justify-content:space-between;height:76px}
-.logo{display:inline-flex;align-items:center;gap:10px;font-family:'Sora',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-.03em;line-height:1}
-.logo b{color:var(--brandA)}
+/* Wordmark lockup: "solutionswith" in Syne, followed by the EQ mark on the right.
+   The mark supplies the "EQ", so there is no EQ text to duplicate it. */
+.logo{display:inline-flex;align-items:center;gap:9px;font-family:'Syne','Sora',sans-serif;font-weight:800;font-size:1.26rem;letter-spacing:-.02em;line-height:1}
 /* Image mark: height-capped so it can never inflate the 76px header, width auto
    keeps the 1.74:1 aspect ratio. Explicit width/height attrs on the <img> reserve
    the box so the nav doesn't reflow while the PNG loads. */
 .logo .mark{flex:none;display:block;height:40px;width:auto;max-height:40px}
-@media(max-width:560px){.logo .mark{height:34px;max-height:34px}.logo{font-size:1.15rem;gap:8px}}
+@media(max-width:560px){.logo .mark{height:32px;max-height:32px}.logo{font-size:1rem;gap:7px}}
 .foot-brand .logo .mark{height:46px;max-height:46px}
 .nav-links{display:flex;align-items:center;gap:var(--s5)}
 .nav-links a.link{position:relative;font-weight:500;font-size:var(--step--1);color:var(--ink-2);padding:6px 0}
@@ -279,7 +280,6 @@ form{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padd
 footer{background:var(--bg-dark);color:var(--on-dark-muted);padding-top:var(--s8)}
 .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:var(--s5);padding-bottom:var(--s7)}
 .foot-brand .logo{color:#fff;margin-bottom:var(--s3)}
-.foot-brand .logo b{color:#8fe3dd}
 .foot-brand p{max-width:34ch;font-size:var(--step--1)}
 .foot-col h5{color:#fff;font-family:'Sora';font-size:var(--step-0);margin-bottom:var(--s3);font-weight:600}
 .foot-col a{display:block;padding:6px 0;font-size:var(--step--1);color:var(--on-dark-muted);transition:color .2s,padding-left .2s}
@@ -425,7 +425,7 @@ form{background:rgba(255,255,255,.75);backdrop-filter:blur(18px) saturate(160%);
 <header id="hdr">
   <div class="wrap">
     <nav>
-      <a href="#top" class="logo" aria-label="solutionswithEQ home"><img class="mark" src="assets/logo-mark.png" width="418" height="240" alt="solutionswithEQ" decoding="async">solutionswith<b>EQ</b></a>
+      <a href="#top" class="logo" aria-label="solutionswithEQ home">solutionswith<img class="mark" src="assets/logo-mark.png" width="418" height="240" alt="EQ" decoding="async"></a>
       <div class="nav-links" id="menu">
         <a href="#services" class="link">Services</a>
         <a href="#why" class="link">Why Us</a>
@@ -714,7 +714,7 @@ form{background:rgba(255,255,255,.75);backdrop-filter:blur(18px) saturate(160%);
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <div class="logo"><img class="mark" src="assets/logo-mark.png" width="418" height="240" alt="solutionswithEQ" loading="lazy" decoding="async">solutionswith<b>EQ</b></div>
+        <div class="logo">solutionswith<img class="mark" src="assets/logo-mark.png" width="418" height="240" alt="EQ" loading="lazy" decoding="async"></div>
         <p>A focused agency helping brands grow through social media marketing and user-friendly website design — delivering polished finished products with strategy and heart.</p>
       </div>
       <div class="foot-col"><h5>Services</h5><a href="#services">Social Media Marketing</a><a href="#services">Website Design</a><a href="#why">Why Us</a><a href="#pricing">Pricing</a></div>
