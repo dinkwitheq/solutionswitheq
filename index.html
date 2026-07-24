@@ -8,24 +8,31 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;450;500;600&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,700&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='32' y2='32'%3E%3Cstop offset='0' stop-color='%235b4bff'/%3E%3Cstop offset='.55' stop-color='%238b5cf6'/%3E%3Cstop offset='1' stop-color='%23ff6a52'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='9' fill='url(%23g)'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Arial,sans-serif' font-weight='800' font-size='14' fill='white'%3EEQ%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="180x180" href="assets/favicon-180.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#07213a">
+<meta property="og:title" content="solutionswithEQ — Social Media Marketing &amp; User-Friendly Web Design">
+<meta property="og:description" content="We grow your brand on social and craft user-friendly websites — polished, finished products you'll be proud to share.">
+<meta property="og:image" content="https://solutionswitheq.com/assets/logo.png">
+<meta property="og:type" content="website">
 <style>
 /* ============ DESIGN TOKENS ============ */
 :root{
   /* color */
   --bg:#ffffff;
   --bg-soft:#f6f7fb;
-  --bg-dark:#0a0f29;
-  --bg-dark-2:#111a3d;
+  --bg-dark:#07213a;
+  --bg-dark-2:#0d3355;
   --ink:#101426;
   --ink-2:#3a4160;
   --muted:#6a7291;
   --line:#e9ebf3;
   --line-dark:rgba(255,255,255,.12);
-  --brandA:#5b4bff;
-  --brandB:#8b5cf6;
-  --accent:#ff6a52;
-  --accent-2:#ffb347;
+  --brandA:#0b5c8f;
+  --brandB:#1fb2ae;
+  --accent:#eda740;
+  --accent-2:#f6cd7a;
   --green:#12a150;
   --on-dark:#eef0fb;
   --on-dark-muted:#a8afd4;
@@ -43,8 +50,8 @@
   --r-sm:12px; --r:18px; --r-lg:26px; --r-full:100px;
   --sh-sm:0 4px 14px -6px rgba(16,20,38,.12);
   --sh:0 24px 60px -28px rgba(16,20,38,.32);
-  --sh-brand:0 18px 44px -14px rgba(91,75,255,.5);
-  --ring:0 0 0 4px rgba(91,75,255,.25);
+  --sh-brand:0 18px 44px -14px rgba(11,92,143,.5);
+  --ring:0 0 0 4px rgba(11,92,143,.25);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -57,7 +64,7 @@ a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 ul{list-style:none}
 :focus-visible{outline:none;box-shadow:var(--ring);border-radius:8px}
-::selection{background:rgba(91,75,255,.2)}
+::selection{background:rgba(11,92,143,.2)}
 
 /* ============ LAYOUT ============ */
 .wrap{width:min(1160px,92vw);margin-inline:auto}
@@ -74,7 +81,7 @@ ul{list-style:none}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:'Sora',sans-serif;font-weight:600;font-size:var(--step--1);padding:15px 28px;border-radius:var(--r-full);border:1.5px solid transparent;cursor:pointer;transition:transform .18s cubic-bezier(.3,.8,.4,1),box-shadow .2s,background .2s,color .2s;will-change:transform}
 .btn:active{transform:translateY(1px) scale(.99)}
 .btn-primary{background:var(--grad);color:#fff;box-shadow:var(--sh-brand)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 24px 52px -14px rgba(91,75,255,.6)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 24px 52px -14px rgba(11,92,143,.6)}
 .btn-primary .arrow{transition:transform .2s}
 .btn-primary:hover .arrow{transform:translateX(4px)}
 .btn-ghost{background:#fff;color:var(--ink);border-color:var(--line)}
@@ -86,9 +93,14 @@ ul{list-style:none}
 header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid var(--line);transition:box-shadow .3s}
 header.scrolled{box-shadow:var(--sh-sm)}
 nav{display:flex;align-items:center;justify-content:space-between;height:76px}
-.logo{display:inline-flex;align-items:center;gap:10px;font-family:'Sora',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-.03em}
+.logo{display:inline-flex;align-items:center;gap:10px;font-family:'Sora',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-.03em;line-height:1}
 .logo b{color:var(--brandA)}
-.logo .mark{flex:none;border-radius:9px;box-shadow:0 4px 12px -4px rgba(91,75,255,.5)}
+/* Image mark: height-capped so it can never inflate the 76px header, width auto
+   keeps the 1.74:1 aspect ratio. Explicit width/height attrs on the <img> reserve
+   the box so the nav doesn't reflow while the PNG loads. */
+.logo .mark{flex:none;display:block;height:40px;width:auto;max-height:40px}
+@media(max-width:560px){.logo .mark{height:34px;max-height:34px}.logo{font-size:1.15rem;gap:8px}}
+.foot-brand .logo .mark{height:46px;max-height:46px}
 .nav-links{display:flex;align-items:center;gap:var(--s5)}
 .nav-links a.link{position:relative;font-weight:500;font-size:var(--step--1);color:var(--ink-2);padding:6px 0}
 .nav-links a.link::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--grad);border-radius:2px;transition:width .25s}
@@ -103,12 +115,12 @@ nav{display:flex;align-items:center;justify-content:space-between;height:76px}
 /* ============ HERO ============ */
 .hero{position:relative;overflow:hidden;background:var(--bg-dark);color:var(--on-dark);border-radius:0 0 34px 34px}
 .hero::before{content:"";position:absolute;inset:0;background:
-  radial-gradient(60% 55% at 78% 8%,rgba(139,92,246,.4),transparent 60%),
-  radial-gradient(50% 50% at 8% 88%,rgba(255,106,82,.24),transparent 60%),
-  radial-gradient(45% 45% at 50% 120%,rgba(91,75,255,.35),transparent);pointer-events:none}
+  radial-gradient(60% 55% at 78% 8%,rgba(31,178,174,.4),transparent 60%),
+  radial-gradient(50% 50% at 8% 88%,rgba(237,167,64,.24),transparent 60%),
+  radial-gradient(45% 45% at 50% 120%,rgba(11,92,143,.35),transparent);pointer-events:none}
 .hero-inner{position:relative;display:grid;grid-template-columns:1.08fr .92fr;gap:var(--s7);align-items:center;padding-block:var(--s8)}
-.hero .eyebrow{color:#c9c2ff}
-.hero .eyebrow::before{background:linear-gradient(90deg,#c9c2ff,var(--accent))}
+.hero .eyebrow{color:#8fe3dd}
+.hero .eyebrow::before{background:linear-gradient(90deg,#8fe3dd,var(--accent))}
 .hero h1{color:#fff;font-size:var(--step-4);font-weight:800;margin:var(--s4) 0 var(--s4)}
 .hero .lead{color:var(--on-dark-muted);font-size:var(--step-1);font-weight:450;max-width:30ch;line-height:1.5}
 .hero-cta{display:flex;gap:var(--s3);flex-wrap:wrap;margin-top:var(--s5)}
@@ -171,8 +183,8 @@ nav{display:flex;align-items:center;justify-content:space-between;height:76px}
 .svc::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .35s}
 .svc:hover{transform:translateY(-8px);box-shadow:var(--sh);border-color:transparent}
 .svc:hover::before{transform:scaleX(1)}
-.svc .ico{width:60px;height:60px;border-radius:16px;display:grid;place-items:center;font-size:28px;margin-bottom:var(--s4);background:linear-gradient(135deg,rgba(91,75,255,.1),rgba(139,92,246,.12))}
-.svc:nth-child(2) .ico{background:linear-gradient(135deg,rgba(255,106,82,.12),rgba(255,179,71,.14))}
+.svc .ico{width:60px;height:60px;border-radius:16px;display:grid;place-items:center;font-size:28px;margin-bottom:var(--s4);background:linear-gradient(135deg,rgba(11,92,143,.1),rgba(31,178,174,.12))}
+.svc:nth-child(2) .ico{background:linear-gradient(135deg,rgba(237,167,64,.12),rgba(246,205,122,.14))}
 .svc h3{font-size:var(--step-1);margin-bottom:var(--s2)}
 .svc p{color:var(--muted);margin-bottom:var(--s4)}
 .svc li{display:flex;gap:10px;align-items:flex-start;padding-block:7px;font-size:var(--step--1);color:var(--ink-2);border-top:1px solid var(--line)}
@@ -206,11 +218,11 @@ nav{display:flex;align-items:center;justify-content:space-between;height:76px}
 /* WHY US */
 .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s4)}
 .why{display:flex;gap:var(--s4);align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s5)}
-.why .ico{flex:none;width:54px;height:54px;border-radius:15px;display:grid;place-items:center;font-size:26px;background:linear-gradient(135deg,rgba(91,75,255,.1),rgba(139,92,246,.12))}
+.why .ico{flex:none;width:54px;height:54px;border-radius:15px;display:grid;place-items:center;font-size:26px;background:linear-gradient(135deg,rgba(11,92,143,.1),rgba(31,178,174,.12))}
 .why h4{font-size:var(--step-1);margin-bottom:6px}
 .why p{color:var(--muted);font-size:var(--step--1)}
 .guarantee{margin-top:var(--s4);position:relative;overflow:hidden;background:var(--bg-dark);color:var(--on-dark);border-radius:var(--r-lg);padding:var(--s6) var(--s5);display:flex;align-items:center;gap:var(--s5);flex-wrap:wrap;justify-content:space-between}
-.guarantee::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 120% at 12% 0%,rgba(139,92,246,.35),transparent 60%),radial-gradient(40% 120% at 95% 100%,rgba(255,106,82,.28),transparent);pointer-events:none}
+.guarantee::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 120% at 12% 0%,rgba(31,178,174,.35),transparent 60%),radial-gradient(40% 120% at 95% 100%,rgba(237,167,64,.28),transparent);pointer-events:none}
 .guarantee>*{position:relative}
 .guarantee .g-copy{max-width:60ch}
 .guarantee .g-badge{flex:none;width:88px;height:88px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-family:'Sora';font-weight:800;font-size:13px;text-align:center;line-height:1.15;color:#fff;box-shadow:var(--sh-brand)}
@@ -253,12 +265,12 @@ form{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padd
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
 .form-note{font-size:.78rem;color:var(--muted);text-align:center;margin-top:var(--s3)}
 #success{display:none;background:rgba(18,161,80,.1);color:#0c7a3b;border:1px solid rgba(18,161,80,.25);padding:14px;border-radius:var(--r-sm);font-weight:600;text-align:center;margin-bottom:var(--s4)}
-#error{display:none;background:rgba(255,106,82,.1);color:#c23c22;border:1px solid rgba(255,106,82,.3);padding:14px;border-radius:var(--r-sm);font-weight:600;text-align:center;margin-bottom:var(--s4)}
+#error{display:none;background:rgba(220,68,50,.1);color:#c23c22;border:1px solid rgba(220,68,50,.3);padding:14px;border-radius:var(--r-sm);font-weight:600;text-align:center;margin-bottom:var(--s4)}
 .btn[aria-busy="true"]{opacity:.7;pointer-events:none}
 
 /* CTA */
 .cta-band{position:relative;overflow:hidden;background:var(--bg-dark);color:#fff;border-radius:var(--r-lg);padding:var(--s8) var(--s5);text-align:center}
-.cta-band::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 80% at 50% 0%,rgba(139,92,246,.4),transparent 60%),radial-gradient(40% 60% at 85% 100%,rgba(255,106,82,.3),transparent)}
+.cta-band::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 80% at 50% 0%,rgba(31,178,174,.4),transparent 60%),radial-gradient(40% 60% at 85% 100%,rgba(237,167,64,.3),transparent)}
 .cta-band>*{position:relative}
 .cta-band h2{color:#fff;font-size:var(--step-3)}
 .cta-band p{color:var(--on-dark-muted);font-size:var(--step-1);margin:var(--s3) auto var(--s5);max-width:46ch;font-weight:450}
@@ -267,7 +279,7 @@ form{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padd
 footer{background:var(--bg-dark);color:var(--on-dark-muted);padding-top:var(--s8)}
 .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:var(--s5);padding-bottom:var(--s7)}
 .foot-brand .logo{color:#fff;margin-bottom:var(--s3)}
-.foot-brand .logo b{color:#c9c2ff}
+.foot-brand .logo b{color:#8fe3dd}
 .foot-brand p{max-width:34ch;font-size:var(--step--1)}
 .foot-col h5{color:#fff;font-family:'Sora';font-size:var(--step-0);margin-bottom:var(--s3);font-weight:600}
 .foot-col a{display:block;padding:6px 0;font-size:var(--step--1);color:var(--on-dark-muted);transition:color .2s,padding-left .2s}
@@ -276,18 +288,18 @@ footer{background:var(--bg-dark);color:var(--on-dark-muted);padding-top:var(--s8
 
 /* ============ AWARD-WINNING ENHANCEMENTS ============ */
 /* scroll progress bar */
-#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:100;background:var(--grad);box-shadow:0 0 14px rgba(91,75,255,.8);transition:width .08s linear}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:100;background:var(--grad);box-shadow:0 0 14px rgba(11,92,143,.8);transition:width .08s linear}
 /* subtle film grain */
 body::after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.04;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 /* hero aurora orbs */
 .hero .aurora{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
 .hero .aurora i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;mix-blend-mode:screen;animation:drift 20s ease-in-out infinite}
-.hero .aurora .a1{width:440px;height:440px;background:#5b4bff;top:-10%;left:-6%}
-.hero .aurora .a2{width:380px;height:380px;background:#8b5cf6;top:16%;right:-8%;animation-delay:-7s}
-.hero .aurora .a3{width:320px;height:320px;background:#ff6a52;bottom:-16%;left:34%;animation-delay:-13s}
+.hero .aurora .a1{width:440px;height:440px;background:#0b5c8f;top:-10%;left:-6%}
+.hero .aurora .a2{width:380px;height:380px;background:#1fb2ae;top:16%;right:-8%;animation-delay:-7s}
+.hero .aurora .a3{width:320px;height:320px;background:#eda740;bottom:-16%;left:34%;animation-delay:-13s}
 @keyframes drift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(46px,-34px) scale(1.12)}66%{transform:translate(-34px,24px) scale(.92)}}
 /* cursor spotlight in hero */
-.hero .spotlight{position:absolute;width:560px;height:560px;border-radius:50%;left:0;top:0;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(139,92,246,.22),transparent 62%);pointer-events:none;opacity:0;transition:opacity .5s;mix-blend-mode:screen;z-index:1}
+.hero .spotlight{position:absolute;width:560px;height:560px;border-radius:50%;left:0;top:0;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(31,178,174,.22),transparent 62%);pointer-events:none;opacity:0;transition:opacity .5s;mix-blend-mode:screen;z-index:1}
 .hero:hover .spotlight{opacity:1}
 .hero-inner{position:relative;z-index:2}
 /* infinite marquee */
@@ -300,8 +312,8 @@ body::after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opac
 /* interactive card glow (pointer-tracked) */
 .svc,.why,.plan{--mx:50%;--my:50%}
 .why{position:relative;overflow:hidden}
-.svc::after,.why::after,.plan::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(260px circle at var(--mx) var(--my),rgba(109,94,252,.12),transparent 60%);opacity:0;transition:opacity .35s;pointer-events:none}
-.plan.pop::after{background:radial-gradient(260px circle at var(--mx) var(--my),rgba(139,92,246,.28),transparent 60%)}
+.svc::after,.why::after,.plan::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(260px circle at var(--mx) var(--my),rgba(11,92,143,.12),transparent 60%);opacity:0;transition:opacity .35s;pointer-events:none}
+.plan.pop::after{background:radial-gradient(260px circle at var(--mx) var(--my),rgba(31,178,174,.28),transparent 60%)}
 .svc:hover::after,.why:hover::after,.plan:hover::after{opacity:1}
 .tilt{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--ty,0));transition:transform .3s cubic-bezier(.2,.7,.3,1)}
 /* magnetic buttons move via --tx/--ty */
@@ -320,8 +332,8 @@ body::after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opac
 .ci .i{width:22px;height:22px}
 
 /* ============ GLASS + MESH ============ */
-#services{background:radial-gradient(760px 460px at 92% -8%,rgba(139,92,246,.09),transparent 60%),radial-gradient(640px 420px at -8% 108%,rgba(255,106,82,.08),transparent 60%)}
-#why{background:radial-gradient(700px 420px at -6% -10%,rgba(91,75,255,.08),transparent 60%),radial-gradient(600px 400px at 105% 90%,rgba(255,179,71,.09),transparent 60%)}
+#services{background:radial-gradient(760px 460px at 92% -8%,rgba(31,178,174,.09),transparent 60%),radial-gradient(640px 420px at -8% 108%,rgba(237,167,64,.08),transparent 60%)}
+#why{background:radial-gradient(700px 420px at -6% -10%,rgba(11,92,143,.08),transparent 60%),radial-gradient(600px 400px at 105% 90%,rgba(246,205,122,.09),transparent 60%)}
 .svc,.why-card{background:rgba(255,255,255,.6);backdrop-filter:blur(16px) saturate(160%);-webkit-backdrop-filter:blur(16px) saturate(160%);border:1px solid rgba(255,255,255,.85);box-shadow:0 8px 30px -18px rgba(16,20,38,.18)}
 form{background:rgba(255,255,255,.75);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%)}
 
@@ -335,11 +347,11 @@ form{background:rgba(255,255,255,.75);backdrop-filter:blur(18px) saturate(160%);
 .mp-head{display:flex;align-items:center;gap:6px;padding:8px 9px}
 .mp-av{width:18px;height:18px;border-radius:50%;background:var(--grad)}
 .mp-name{height:6px;width:54px;border-radius:3px;background:#e7e9f3}
-.mp-img{aspect-ratio:1/.9;background:linear-gradient(135deg,#5b4bff,#8b5cf6 45%,#ff6a52);position:relative}
+.mp-img{aspect-ratio:1/.9;background:linear-gradient(135deg,#0b5c8f,#1fb2ae 45%,#eda740);position:relative}
 .mp-img::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 25%,rgba(255,255,255,.35),transparent 55%)}
 .mp-row{display:flex;gap:7px;padding:8px 9px 4px}
 .mp-row i{width:13px;height:13px;border-radius:4px;background:#e7e9f3}
-.mp-row i:first-child{background:linear-gradient(135deg,#ff6a52,#ffb347)}
+.mp-row i:first-child{background:linear-gradient(135deg,#eda740,#f6cd7a)}
 .mp-lines{padding:2px 9px 12px}
 .mp-lines i{display:block;height:5px;border-radius:3px;background:#e7e9f3;margin-top:4px}
 .mp-lines i:first-child{width:88%}
@@ -349,7 +361,7 @@ form{background:rgba(255,255,255,.75);backdrop-filter:blur(18px) saturate(160%);
 .ml-screen{border:5px solid #101426;border-bottom:none;border-radius:12px 12px 0 0;background:#fff;overflow:hidden;box-shadow:var(--sh)}
 .ml-bar{display:flex;gap:4px;padding:6px 8px;background:#f1f2f8}
 .ml-bar i{width:6px;height:6px;border-radius:50%;background:#d6d9e8}
-.ml-bar i:first-child{background:#ff6a52}
+.ml-bar i:first-child{background:#eda740}
 .ml-hero{height:46px;background:var(--grad);position:relative}
 .ml-hero::after{content:"";position:absolute;left:10px;top:14px;width:60px;height:7px;border-radius:4px;background:rgba(255,255,255,.85)}
 .ml-body{display:flex;gap:6px;padding:8px}
@@ -366,19 +378,19 @@ form{background:rgba(255,255,255,.75);backdrop-filter:blur(18px) saturate(160%);
 .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--s4)}
 .why-card{position:relative;overflow:hidden;border-radius:var(--r-lg);padding:var(--s5);transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s}
 .why-card:hover{transform:translateY(-6px);box-shadow:var(--sh)}
-.why-card .ico{width:54px;height:54px;border-radius:15px;display:grid;place-items:center;margin-bottom:var(--s4);background:linear-gradient(135deg,rgba(91,75,255,.1),rgba(139,92,246,.12))}
+.why-card .ico{width:54px;height:54px;border-radius:15px;display:grid;place-items:center;margin-bottom:var(--s4);background:linear-gradient(135deg,rgba(11,92,143,.1),rgba(31,178,174,.12))}
 .why-card h4{font-size:var(--step-1);margin-bottom:6px}
 .why-card p{color:var(--muted);font-size:var(--step--1)}
 .b-wide{grid-column:span 4}
 .b-tall{grid-column:span 2}
 .b-third{grid-column:span 2}
 .stat-card{grid-column:span 2;position:relative;overflow:hidden;border-radius:var(--r-lg);padding:var(--s5);background:var(--bg-dark);color:var(--on-dark);display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
-.stat-card::before{content:"";position:absolute;inset:0;background:radial-gradient(70% 90% at 80% 10%,rgba(139,92,246,.4),transparent 60%),radial-gradient(50% 70% at 10% 100%,rgba(255,106,82,.3),transparent)}
+.stat-card::before{content:"";position:absolute;inset:0;background:radial-gradient(70% 90% at 80% 10%,rgba(31,178,174,.4),transparent 60%),radial-gradient(50% 70% at 10% 100%,rgba(237,167,64,.3),transparent)}
 .stat-card>*{position:relative}
-.stat-card .big-num{font-family:'Fraunces',serif;font-weight:800;font-size:3.4rem;line-height:1;background:linear-gradient(115deg,#c9c2ff,#ff9a85);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat-card .big-num{font-family:'Fraunces',serif;font-weight:800;font-size:3.4rem;line-height:1;background:linear-gradient(115deg,#8fe3dd,#f6cd7a);-webkit-background-clip:text;background-clip:text;color:transparent}
 .stat-card .lbl{margin-top:8px;color:var(--on-dark-muted);font-size:var(--step--1);font-weight:500}
 .why-card{--mx:50%;--my:50%}
-.why-card::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(260px circle at var(--mx) var(--my),rgba(109,94,252,.12),transparent 60%);opacity:0;transition:opacity .35s;pointer-events:none}
+.why-card::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(260px circle at var(--mx) var(--my),rgba(11,92,143,.12),transparent 60%);opacity:0;transition:opacity .35s;pointer-events:none}
 .why-card:hover::after{opacity:1}
 
 /* ============ RESPONSIVE ============ */
@@ -413,7 +425,7 @@ form{background:rgba(255,255,255,.75);backdrop-filter:blur(18px) saturate(160%);
 <header id="hdr">
   <div class="wrap">
     <nav>
-      <a href="#top" class="logo" aria-label="solutionswithEQ home"><svg class="mark" width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lgm1" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#5b4bff"/><stop offset=".55" stop-color="#8b5cf6"/><stop offset="1" stop-color="#ff6a52"/></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#lgm1)"/><text x="16" y="21.5" text-anchor="middle" font-family="Sora,sans-serif" font-weight="800" font-size="13" fill="#fff">EQ</text></svg>solutionswith<b>EQ</b></a>
+      <a href="#top" class="logo" aria-label="solutionswithEQ home"><img class="mark" src="assets/logo-mark.png" width="418" height="240" alt="solutionswithEQ" decoding="async">solutionswith<b>EQ</b></a>
       <div class="nav-links" id="menu">
         <a href="#services" class="link">Services</a>
         <a href="#why" class="link">Why Us</a>
@@ -485,7 +497,7 @@ form{background:rgba(255,255,255,.75);backdrop-filter:blur(18px) saturate(160%);
       <article class="svc reveal">
         <div class="svc-flex">
           <div class="svc-main">
-            <div class="ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig1" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#5b4bff"/><stop offset="1" stop-color="#ff6a52"/></linearGradient></defs><g fill="none" stroke="url(#ig1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4a1 1 0 0 0 1 1h2l4 4V5L6 9H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9.2 9.2 0 0 1 0 13"/></g></svg></div>
+            <div class="ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig1" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#0b5c8f"/><stop offset="1" stop-color="#eda740"/></linearGradient></defs><g fill="none" stroke="url(#ig1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4a1 1 0 0 0 1 1h2l4 4V5L6 9H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9.2 9.2 0 0 1 0 13"/></g></svg></div>
             <h3>Social Media Marketing</h3>
             <p>We turn your feed into a growth engine — content people stop for, with real strategy behind every post.</p>
             <ul>
@@ -508,7 +520,7 @@ form{background:rgba(255,255,255,.75);backdrop-filter:blur(18px) saturate(160%);
       <article class="svc reveal">
         <div class="svc-flex">
           <div class="svc-main">
-            <div class="ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig2" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#ff6a52"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs><g fill="none" stroke="url(#ig2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18"/><path d="M6.5 6.6h.01M9.5 6.6h.01"/><path d="M7 13l2 2-2 2M11.5 17h5"/></g></svg></div>
+            <div class="ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig2" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#eda740"/><stop offset="1" stop-color="#1fb2ae"/></linearGradient></defs><g fill="none" stroke="url(#ig2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18"/><path d="M6.5 6.6h.01M9.5 6.6h.01"/><path d="M7 13l2 2-2 2M11.5 17h5"/></g></svg></div>
             <h3>User-Friendly Website Design</h3>
             <p>Intuitive, beautiful websites built for real people — fast, easy to use, and delivered as a polished finished product.</p>
             <ul>
@@ -562,7 +574,7 @@ form{background:rgba(255,255,255,.75);backdrop-filter:blur(18px) saturate(160%);
     </div>
     <div class="bento">
       <article class="why-card b-wide reveal tilt">
-        <div class="ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig3" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#5b4bff"/><stop offset="1" stop-color="#ff6a52"/></linearGradient></defs><g fill="none" stroke="url(#ig3)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></g></svg></div>
+        <div class="ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig3" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#0b5c8f"/><stop offset="1" stop-color="#eda740"/></linearGradient></defs><g fill="none" stroke="url(#ig3)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></g></svg></div>
         <h4>Focused, not scattered</h4>
         <p>We do two things — social media and websites — and we do them exceptionally well, instead of spreading thin across a dozen services. Depth beats breadth, and your results show it.</p>
       </article>
@@ -571,17 +583,17 @@ form{background:rgba(255,255,255,.75);backdrop-filter:blur(18px) saturate(160%);
         <span class="lbl">Maximum time before you hear back from us — usually much faster.</span>
       </div>
       <article class="why-card b-third reveal tilt">
-        <div class="ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig4" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#ff6a52"/></linearGradient></defs><g fill="none" stroke="url(#ig4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5"/></g></svg></div>
+        <div class="ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig4" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#1fb2ae"/><stop offset="1" stop-color="#eda740"/></linearGradient></defs><g fill="none" stroke="url(#ig4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5"/></g></svg></div>
         <h4>You approve every step</h4>
         <p>No surprises. You sign off on strategy, designs, and content before anything goes live.</p>
       </article>
       <article class="why-card b-third reveal tilt">
-        <div class="ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig5" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#ffb347"/><stop offset="1" stop-color="#ff6a52"/></linearGradient></defs><g fill="none" stroke="url(#ig5)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2.5L4.5 13H11l-1 8.5L18.5 11H12l1-8.5z"/></g></svg></div>
+        <div class="ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig5" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#f6cd7a"/><stop offset="1" stop-color="#eda740"/></linearGradient></defs><g fill="none" stroke="url(#ig5)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2.5L4.5 13H11l-1 8.5L18.5 11H12l1-8.5z"/></g></svg></div>
         <h4>Fast &amp; communicative</h4>
         <p>Direct access to the person doing the work, with clear timelines — every time.</p>
       </article>
       <article class="why-card b-third reveal tilt">
-        <div class="ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig6" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#5b4bff"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs><g fill="none" stroke="url(#ig6)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h11L21 9l-9 11.5L3 9l3.5-5.5z"/><path d="M3 9h18M12 20.5L8.5 9l2-5.5M12 20.5L15.5 9l-2-5.5"/></g></svg></div>
+        <div class="ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig6" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#0b5c8f"/><stop offset="1" stop-color="#1fb2ae"/></linearGradient></defs><g fill="none" stroke="url(#ig6)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h11L21 9l-9 11.5L3 9l3.5-5.5z"/><path d="M3 9h18M12 20.5L8.5 9l2-5.5M12 20.5L15.5 9l-2-5.5"/></g></svg></div>
         <h4>Transparent, fair pricing</h4>
         <p>Clear packages and honest quotes. You always know exactly what you're paying for and why.</p>
       </article>
@@ -655,9 +667,9 @@ form{background:rgba(255,255,255,.75);backdrop-filter:blur(18px) saturate(160%);
       <span class="eyebrow">Let's Talk</span>
       <h2>Book your free strategy call</h2>
       <p>Tell us about your business and goals. We'll reply within one business day with ideas — no pressure, no jargon.</p>
-      <div class="info-item"><span class="ci"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig7" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#5b4bff"/><stop offset="1" stop-color="#ff6a52"/></linearGradient></defs><g fill="none" stroke="url(#ig7)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7.5l8.5 6 8.5-6"/></g></svg></span>eq@solutionswitheq.com</div>
-      <div class="info-item"><span class="ci"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig8" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#ff6a52"/></linearGradient></defs><g fill="none" stroke="url(#ig8)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.85.57 2.8.7a2 2 0 0 1 1.7 2.05z"/></g></svg></span><a href="tel:+18334932737">(833) 493-2737</a></div>
-      <div class="info-item"><span class="ci"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig9" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#ffb347"/><stop offset="1" stop-color="#ff6a52"/></linearGradient></defs><g fill="none" stroke="url(#ig9)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2.5L4.5 13H11l-1 8.5L18.5 11H12l1-8.5z"/></g></svg></span>Response within 1 business day</div>
+      <div class="info-item"><span class="ci"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig7" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#0b5c8f"/><stop offset="1" stop-color="#eda740"/></linearGradient></defs><g fill="none" stroke="url(#ig7)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7.5l8.5 6 8.5-6"/></g></svg></span>eq@solutionswitheq.com</div>
+      <div class="info-item"><span class="ci"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig8" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#1fb2ae"/><stop offset="1" stop-color="#eda740"/></linearGradient></defs><g fill="none" stroke="url(#ig8)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.85.57 2.8.7a2 2 0 0 1 1.7 2.05z"/></g></svg></span><a href="tel:+18334932737">(833) 493-2737</a></div>
+      <div class="info-item"><span class="ci"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig9" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#f6cd7a"/><stop offset="1" stop-color="#eda740"/></linearGradient></defs><g fill="none" stroke="url(#ig9)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2.5L4.5 13H11l-1 8.5L18.5 11H12l1-8.5z"/></g></svg></span>Response within 1 business day</div>
     </div>
     <form id="leadForm" class="reveal" novalidate onsubmit="return handleSubmit(event)">
       <input type="hidden" name="access_key" value="4056e88e-f55c-4b1d-b6dd-8c8f15c1bbec">
@@ -702,7 +714,7 @@ form{background:rgba(255,255,255,.75);backdrop-filter:blur(18px) saturate(160%);
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <div class="logo"><svg class="mark" width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lgm2" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#5b4bff"/><stop offset=".55" stop-color="#8b5cf6"/><stop offset="1" stop-color="#ff6a52"/></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#lgm2)"/><text x="16" y="21.5" text-anchor="middle" font-family="Sora,sans-serif" font-weight="800" font-size="13" fill="#fff">EQ</text></svg>solutionswith<b>EQ</b></div>
+        <div class="logo"><img class="mark" src="assets/logo-mark.png" width="418" height="240" alt="solutionswithEQ" loading="lazy" decoding="async">solutionswith<b>EQ</b></div>
         <p>A focused agency helping brands grow through social media marketing and user-friendly website design — delivering polished finished products with strategy and heart.</p>
       </div>
       <div class="foot-col"><h5>Services</h5><a href="#services">Social Media Marketing</a><a href="#services">Website Design</a><a href="#why">Why Us</a><a href="#pricing">Pricing</a></div>
