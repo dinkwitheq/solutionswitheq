@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SolutionsWithEQ — Social Media Marketing & User-Friendly Web Design</title>
 <meta name="description" content="SolutionsWithEQ helps brands grow with social media marketing and beautifully designed, user-friendly websites that deliver excellent finished products. Book a free strategy call.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;450;500;600&family=Syne:wght@700;800&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/fonts.css">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="180x180" href="assets/favicon-180.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
@@ -125,18 +123,17 @@ nav{display:flex;align-items:center;justify-content:space-between;height:76px}
 .hero h1{color:#fff;font-size:var(--step-4);font-weight:800;margin:var(--s4) 0 var(--s4)}
 .hero .lead{color:var(--on-dark-muted);font-size:var(--step-1);font-weight:450;max-width:30ch;line-height:1.5}
 .hero-cta{display:flex;gap:var(--s3);flex-wrap:wrap;margin-top:var(--s5)}
-.hero-trust{display:flex;align-items:center;gap:var(--s3);margin-top:var(--s5);color:var(--on-dark-muted);font-size:var(--step--1)}
-.avatars{display:flex}
-.avatars span{width:34px;height:34px;border-radius:50%;border:2px solid var(--bg-dark);margin-left:-10px;background:var(--grad);display:grid;place-items:center;font-size:12px;font-weight:700;color:#fff;font-family:'Sora'}
-.avatars span:first-child{margin-left:0}
-.stars{color:var(--accent-2);letter-spacing:2px}
+.hero-trust{display:flex;align-items:center;gap:var(--s3);margin-top:var(--s5);color:var(--on-dark-muted);font-size:var(--step--1);max-width:44ch}
 
 /* hero visual */
 .hero-visual{position:relative;height:440px}
 .panel{position:absolute;background:rgba(255,255,255,.98);color:var(--ink);border-radius:var(--r);box-shadow:var(--sh);padding:var(--s4);border:1px solid rgba(255,255,255,.6)}
 .panel .cap{font-size:var(--step--1);color:var(--muted);font-weight:500}
 .panel .metric{font-family:'Sora';font-weight:800;font-size:1.9rem;margin-top:2px}
-.panel .delta{display:inline-flex;align-items:center;gap:5px;font-size:var(--step--1);font-weight:600;color:var(--green);margin-top:4px}
+/* Panels describe what we do rather than quoting client numbers, so the headline
+   is words not a figure and needs a smaller size than the old metric treatment. */
+.panel .metric.text{font-size:1.3rem;line-height:1.2;letter-spacing:-.02em}
+.panel .sub{font-size:var(--step--1);color:var(--muted);font-weight:500;margin-top:6px}
 .p1{top:6%;left:0;width:56%;animation:float 6s ease-in-out infinite}
 .p2{top:34%;right:0;width:52%;animation:float 6s ease-in-out infinite .8s}
 .p3{bottom:2%;left:14%;width:60%;animation:float 6s ease-in-out infinite 1.6s}
@@ -453,25 +450,24 @@ form{background:rgba(255,255,255,.75);backdrop-filter:blur(18px) saturate(160%);
         <a href="#why" class="btn btn-on-dark">Why Choose Us</a>
       </div>
       <div class="hero-trust">
-        <div class="avatars" aria-hidden="true"><span>B</span><span>N</span><span>L</span><span>+</span></div>
-        <div><span class="stars">★★★★★</span><br>Loved by growing brands &amp; local businesses</div>
+        <div>Free strategy call, no obligation — if we're not the right fit for your goals, we'll say so.</div>
       </div>
     </div>
     <div class="hero-visual" aria-hidden="true">
       <div class="panel p1">
-        <div class="cap">Instagram reach</div>
-        <div class="metric grad-text">+240%</div>
-        <div class="delta">▲ last 90 days</div>
+        <div class="cap">Social media</div>
+        <div class="metric text grad-text">Strategy first</div>
+        <div class="sub">Planned, not posted at random</div>
       </div>
       <div class="panel p2">
-        <div class="cap">Website delivered</div>
-        <div class="metric">★ 5.0</div>
+        <div class="cap">Websites</div>
+        <div class="metric text">Fast &amp; clear</div>
         <div class="mini-chart"><i style="height:40%"></i><i style="height:60%"></i><i style="height:50%"></i><i style="height:80%"></i><i style="height:100%"></i></div>
       </div>
       <div class="panel p3">
-        <div class="cap">New site conversion</div>
-        <div class="metric grad-text">6.8%</div>
-        <div class="delta">▲ up from 1.9%</div>
+        <div class="cap">Every step</div>
+        <div class="metric text grad-text">You approve</div>
+        <div class="sub">before anything goes live</div>
       </div>
     </div>
   </div>
@@ -580,7 +576,7 @@ form{background:rgba(255,255,255,.75);backdrop-filter:blur(18px) saturate(160%);
       </article>
       <div class="stat-card reveal">
         <span class="big-num"><span data-count="24">0</span>h</span>
-        <span class="lbl">Maximum time before you hear back from us — usually much faster.</span>
+        <span class="lbl">Our target reply time on business days — often sooner.</span>
       </div>
       <article class="why-card b-third reveal tilt">
         <div class="ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig4" x1="0" y1="0" x2="24" y2="24"><stop offset="0" stop-color="#1fb2ae"/><stop offset="1" stop-color="#eda740"/></linearGradient></defs><g fill="none" stroke="url(#ig4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5"/></g></svg></div>
@@ -600,10 +596,10 @@ form{background:rgba(255,255,255,.75);backdrop-filter:blur(18px) saturate(160%);
     </div>
     <div class="guarantee reveal">
       <div class="g-copy">
-        <h3>Our happiness guarantee</h3>
-        <p>We'll keep refining until you're genuinely happy with your website or your social content. If you're not satisfied with your first month, we'll make it right — because your trust is how we grow.</p>
+        <h3>Our revision promise</h3>
+        <p>We keep refining your website or social content through the revision rounds included in your agreement. If something isn't right in your first month, tell us and we'll work with you in good faith on a fair resolution. Full details are set out in your written proposal.</p>
       </div>
-      <div class="g-badge"><span data-count="100">0</span>%<br>Happy</div>
+      <div class="g-badge">Our<br>promise</div>
     </div>
   </div>
 </section>
@@ -656,7 +652,7 @@ form{background:rgba(255,255,255,.75);backdrop-filter:blur(18px) saturate(160%);
         <a href="#contact" class="btn btn-ghost">Request a Quote</a>
       </div>
     </div>
-    <p class="price-note">Website builds start at $500 as a one-time project. Not sure what you need? Book a free call and we'll recommend the right fit.</p>
+    <p class="price-note">Website builds start at $500 as a one-time project. Not sure what you need? Book a free call and we'll recommend the right fit.<br>Prices shown are starting points for typical projects, are not an offer or quote, and may change. Final scope and pricing are confirmed in a written proposal before any work begins.</p>
   </div>
 </section>
 
@@ -695,7 +691,7 @@ form{background:rgba(255,255,255,.75);backdrop-filter:blur(18px) saturate(160%);
       </div>
       <div class="field"><label for="f-msg">Tell us about your goals</label><textarea id="f-msg" name="message" placeholder="What are you hoping to achieve?"></textarea></div>
       <button type="submit" class="btn btn-primary" style="width:100%">Send &amp; Book My Free Call <span class="arrow">→</span></button>
-      <p class="form-note">By submitting you agree to be contacted about your enquiry. We never spam.</p>
+      <p class="form-note">By submitting this form you consent to us contacting you about your enquiry. We never sell your details and we won't add you to a mailing list. Please don't include sensitive information in your message.</p>
     </form>
   </div>
 </section>
