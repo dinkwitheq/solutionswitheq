@@ -1,0 +1,105 @@
+/* ============================================================
+   motion.css — GSAP motion layer for SolutionsWithEQ
+   ------------------------------------------------------------
+   Loaded after the page's inline <style>. Its only job is to hand
+   ownership of the animated properties from CSS over to GSAP.
+
+   Everything here is scoped to html.gsap-on, a class added by
+   motion.js only once GSAP has actually loaded AND the visitor has
+   not asked for reduced motion. If the CDN is blocked or JS is off,
+   none of this applies and the original CSS animation runs exactly
+   as before — the page degrades to what it was, not to a blank screen.
+   ============================================================ */
+
+/* ---- 1. Hand off the scroll-reveal system --------------------
+   The base stylesheet already sets .reveal{opacity:0} and transitions
+   to .reveal.in. We keep the hidden start state (it doubles as the
+   pre-hide GSAP needs) but kill the transition so tweens aren't
+   fighting a 0.55s CSS ease on the same properties. */
+html.gsap-on .reveal { transition: none; }
+
+/* ---- 2. Hero entrance ---------------------------------------
+   The CSS keyframe entrance (riseIn / panelIn) is replaced by a single
+   GSAP timeline so the headline words, panels and CTA can share one
+   set of offsets instead of hand-tuned animation-delay values. */
+html.gsap-on .hero-copy > *,
+html.gsap-on .panel { animation: none; opacity: 0; }
+
+/* ---- 3. Scroll progress -------------------------------------
+   Width animation replaced by a transform. scaleX is compositor-only,
+   so the bar tracks the scrub without layout work on every frame. */
+html.gsap-on #progress {
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: none;
+  will-change: transform;
+}
+
+/* ---- 4. Marquee ---------------------------------------------
+   The CSS keyframe loop can't react to anything. GSAP drives it
+   instead so scroll velocity can push it faster and flip its
+   direction. :hover pause moves to JS for the same reason. */
+html.gsap-on .marquee .track { animation: none; will-change: transform; }
+
+/* ---- 5. Split headline words --------------------------------
+   .w is the clipping frame, .wi is the part that moves. Overflow
+   hidden on the frame gives the "rising out of a mask" reveal
+   rather than a plain fade. inline-block on both so transforms
+   apply and the line still wraps on its natural word boundaries. */
+.w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
+.wi { display: inline-block; will-change: transform; }
+
+/* ---- 6. Process step sequence -------------------------------
+   The rail is injected by motion.js, not authored into the HTML,
+   so the markup stays identical to the original page. */
+.steps { --rail-inset: 24px; }
+.steps-rail {
+  position: absolute;
+  top: 24px;
+  left: var(--rail-inset);
+  right: var(--rail-inset);
+  height: 2px;
+  background: var(--line);
+  border-radius: 2px;
+  z-index: 0;
+  pointer-events: none;
+}
+.steps-rail > i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--grad);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+.steps .step { position: relative; z-index: 1; }
+/* Dimmed until the scrub reaches it. Only applied when GSAP is
+   driving, so a no-JS visitor sees all four steps at full contrast. */
+html.gsap-on .steps .step .num { will-change: transform; }
+
+@media (max-width: 900px) {
+  /* Rail only makes sense against the 4-across desktop grid. */
+  .steps-rail { display: none; }
+}
+
+/* ---- 7. Magnetic buttons ------------------------------------
+   GSAP writes x/y; the label needs its own layer so the arrow can
+   lag slightly behind the button body. */
+html.gsap-on .btn.magnetic { will-change: transform; }
+
+/* ---- 8. Reduced motion --------------------------------------
+   Belt and braces. motion.js already refuses to add .gsap-on when
+   reduced motion is requested, but if a visitor flips the OS setting
+   mid-session this guarantees nothing is left mid-tween or invisible. */
+@media (prefers-reduced-motion: reduce) {
+  html.gsap-on .hero-copy > *,
+  html.gsap-on .panel,
+  html.gsap-on .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  html.gsap-on #progress { transform: scaleX(0); }
+  .wi { transform: none !important; }
+}

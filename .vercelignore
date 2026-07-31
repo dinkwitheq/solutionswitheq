@@ -1,3 +1,13 @@
 cloudflared.exe
 *.log
 .claude/
+
+# Agent tooling — installed locally, never part of the deployed site.
+# Without these, .agents/ ships ~21 skill folders as public static files
+# and index.html.bak would be servable as a second copy of the homepage.
+.agents/
+.cursor/
+.codex/
+skills-lock.json
+.mcp.json
+*.bak

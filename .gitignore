@@ -10,3 +10,11 @@ cloudflared.exe
 # Local tooling
 .claude/
 node_modules/
+.agents/
+.cursor/
+.codex/
+skills-lock.json
+.mcp.json
+
+# Pre-swap backup of the homepage — git history is the real record
+*.bak

@@ -439,6 +439,19 @@ form{background:rgba(255,255,255,.75);backdrop-filter:blur(18px) saturate(160%);
   .hero-cta .btn{flex:1}
 }
 </style>
+<!-- Motion layer. Loaded after the inline styles so its hand-off rules win. -->
+<link rel="stylesheet" href="assets/motion.css">
+<script>
+  /* Arm the GSAP motion layer before first paint.
+     Adding the class here (rather than in motion.js) means the hidden
+     start states in motion.css apply immediately, so there is no frame
+     where the hero is visible and then jumps back to hide itself.
+     motion.js removes the class again if GSAP fails to load, and the
+     onerror handlers below do the same the moment a request fails. */
+  if (matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    document.documentElement.classList.add('gsap-on');
+  }
+</script>
 </head>
 <body>
 <div id="progress"></div>
@@ -816,13 +829,30 @@ form{background:rgba(255,255,255,.75);backdrop-filter:blur(18px) saturate(160%);
   </div>
 </footer>
 
+<!-- GSAP + ScrollTrigger 3.13.0 (MIT-licensed "no charge" tier), self-hosted
+     in assets/vendor/ for the same reason the fonts are: no third-party
+     runtime dependency, nothing to go down or change underneath the site.
+     Deferred, so they execute after the inline script below but before
+     DOMContentLoaded. If either fails to load, onerror drops html.gsap-on
+     and the original CSS/IntersectionObserver behaviour takes over. -->
+<script defer src="assets/vendor/gsap.min.js"
+        onerror="document.documentElement.classList.remove('gsap-on')"></script>
+<script defer src="assets/vendor/ScrollTrigger.min.js"
+        onerror="document.documentElement.classList.remove('gsap-on')"></script>
+<script defer src="assets/motion.js"></script>
+
 <script>
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* When the GSAP layer is armed it owns scroll reveal, the progress bar
+     and the count-up. The originals below stay in place as the fallback
+     path for no-JS-CDN, reduced-motion and older-browser visitors. */
+  var gsapOn=document.documentElement.classList.contains('gsap-on');
   var finePointer=matchMedia('(pointer: fine)').matches;
   // sticky header shadow + scroll progress bar
   var hdr=document.getElementById('hdr'),prog=document.getElementById('progress');
   function onScroll(){
     hdr.classList.toggle('scrolled',scrollY>8);
+    if(gsapOn)return; // ScrollTrigger scrubs #progress via scaleX instead
     var h=document.documentElement.scrollHeight-innerHeight;
     prog.style.width=(h>0?(scrollY/h)*100:0)+'%';
   }
@@ -835,11 +865,13 @@ form{background:rgba(255,255,255,.75);backdrop-filter:blur(18px) saturate(160%);
     burger.setAttribute('aria-expanded',open);
   });
   menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open');burger.classList.remove('open');burger.setAttribute('aria-expanded',false);});});
-  // scroll reveal
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
-  },{threshold:.14});
-  document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=(i%4*70)+'ms';io.observe(el);});
+  // scroll reveal — superseded by ScrollTrigger.batch() when GSAP is armed
+  if(!gsapOn){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:.14});
+    document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=(i%4*70)+'ms';io.observe(el);});
+  }
 
   if(!reduce && finePointer){
     // hero cursor spotlight
@@ -859,8 +891,8 @@ form{background:rgba(255,255,255,.75);backdrop-filter:blur(18px) saturate(160%);
     });
   }
 
-  // count-up numbers when in view
-  document.querySelectorAll('[data-count]').forEach(function(el){
+  // count-up numbers when in view — superseded by the GSAP counter when armed
+  if(!gsapOn) document.querySelectorAll('[data-count]').forEach(function(el){
     var target=+el.getAttribute('data-count');
     if(reduce){el.textContent=target;return;}
     var co=new IntersectionObserver(function(es){
