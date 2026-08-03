@@ -50,6 +50,23 @@ html.gsap-on .marquee .track { animation: none; will-change: transform; }
 .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
 .wi { display: inline-block; will-change: transform; }
 
+/* Gradient words must carry their own gradient once split.
+   .grad-text paints a gradient on itself and clips it to its text via
+   background-clip:text, with color:transparent so only the clipped
+   gradient shows. Splitting moves the glyphs down into nested
+   inline-block .w/.wi children, and the ancestor's background no longer
+   paints over them — leaving transparent text with nothing behind it,
+   i.e. invisible words. Re-declaring the gradient on .wi puts the paint
+   back on the element that actually holds the text. Each .grad-text
+   here wraps a single word, so a per-word gradient renders identically
+   to the original per-phrase one. */
+.grad-text .wi {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 /* ---- 6. Process step sequence -------------------------------
    The rail is injected by motion.js, not authored into the HTML,
    so the markup stays identical to the original page. */
