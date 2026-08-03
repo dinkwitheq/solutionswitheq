@@ -137,6 +137,32 @@
         { y: 34, scale: 0.94, autoAlpha: 0 },
         { y: 0, scale: 1, autoAlpha: 1, duration: 0.9, stagger: 0.11 }, 0.5);
 
+    /* ---- Headline safety net --------------------------------
+       The masked reveal means a word that never finishes moving is a
+       word nobody can read: .w clips to its own box, so a .wi still
+       translated 118% down is simply gone. The headline is the single
+       most important text on the page, so it must not depend on this
+       timeline completing.
+
+       Two guarantees. First, once the entrance finishes, strip the
+       inline transforms and stop clipping — the h1 goes back to being
+       ordinary text that nothing can hide again. Second, a timer
+       failsafe: GSAP's ticker runs on requestAnimationFrame, which
+       browsers suspend in background tabs, so a page opened in a
+       background tab can sit at progress 0 indefinitely. setTimeout
+       keeps running when rAF does not, so it can force the finish. */
+    function settleHeadline() {
+      gsap.set(heroWords, { clearProps: 'all' });
+      document.querySelectorAll('.hero h1 .w').forEach(function (w) {
+        w.style.overflow = 'visible';
+      });
+    }
+    heroTl.eventCallback('onComplete', settleHeadline);
+    setTimeout(function () {
+      if (heroTl.progress() < 1) { heroTl.progress(1); }
+      settleHeadline();
+    }, 2600);
+
     /* The CSS float loop was killed in motion.css so the entrance
        and the idle drift don't write to transform at the same time.
        Restart it as a GSAP tween once the panels have landed. */
@@ -217,7 +243,13 @@
       if (!words.length) return;
       gsap.from(words, {
         yPercent: 110, duration: 0.8, stagger: 0.035, ease: 'power3.out',
-        scrollTrigger: { trigger: h2, start: 'top 86%', once: true }
+        scrollTrigger: { trigger: h2, start: 'top 86%', once: true },
+        // Same reasoning as the headline: once it has played, the
+        // heading stops being clipped so nothing can hide it later.
+        onComplete: function () {
+          gsap.set(words, { clearProps: 'all' });
+          h2.querySelectorAll('.w').forEach(function (w) { w.style.overflow = 'visible'; });
+        }
       });
     });
 
